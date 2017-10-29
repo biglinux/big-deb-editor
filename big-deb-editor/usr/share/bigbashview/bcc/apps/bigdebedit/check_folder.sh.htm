@@ -1,0 +1,94 @@
+#!/bin/bash
+
+# Import BigControlCenter base modules / Importa os módulos básicos do BigControlCenter
+# That's include jquery and materialize / Isso inclui o jquery e o materialize
+# http://materializecss.com/
+. /usr/share/bigbashview/bcc/shell/base.sh
+windowID="$(xprop -root '\t$0' _NET_ACTIVE_WINDOW | cut -f 2)"
+
+#Title/Description variables
+bcc_title="Criador de pacotes .deb"
+bcc_description=$"A forma mais simples de fazer seus pacotes .deb."
+# To disable logo use: bcc_logo="no"
+bcc_logo="logo.png"
+
+# About variables
+# To disable about use: bcc_about="no"
+bcc_about="yes"
+bcc_about_license=$"GPL v2 or greater"
+bcc_about_by=$"Bruno Gonçalves"
+bcc_about_release_date=$"15/07/2017"
+bcc_about_url_code=$"https://github.com/biglinux/bigdebedit"
+bcc_about_url_project=$"https://www.biglinux.com.br"
+
+# Print header in screen
+bcc_header
+
+# Import tweaks for theme
+echo '<link rel="stylesheet" type="text/css" href="theme.css">'
+
+cd ~
+
+#############
+# Select new folder
+#############
+
+if [ "$p_change" = "work" ]; then
+    zenity --attach="$windowID" --file-selection --directory --filename=~ > "$HOME/.config/bcc/bigdebedit/work-tmp"
+    #Confere se o diretório existe
+    if [ -d "$(cat "$HOME/.config/bcc/bigdebedit/work-tmp")" ]
+    then
+        mv -f "$HOME/.config/bcc/bigdebedit/work-tmp" "$HOME/.config/bcc/bigdebedit/work"
+    fi
+fi
+
+
+
+
+if [ "$p_change" = "save" ]; then
+    zenity --attach="$windowID" --file-selection --directory --filename=~ > "$HOME/.config/bcc/bigdebedit/save-tmp"
+        #Confere se o diretório existe
+        if [ -d "$(cat "$HOME/.config/bcc/bigdebedit/save-tmp")" ]
+        then
+            mv -f "$HOME/.config/bcc/bigdebedit/save-tmp" "$HOME/.config/bcc/bigdebedit/save"
+        fi
+        #Confere permissão de escrita
+        if [ ! -w "$(cat "$HOME/.config/bcc/bigdebedit/save")" ]
+        then
+            zenity --attach="$windowID" --error --text "Esta pasta NÃO possui permissão de gravação para o usuário $USER."
+        fi
+    fi
+
+###############
+# Start Content
+
+
+
+echo '<div class="row"><div class="col s12">'
+
+
+echo '<script type="text/javascript">'
+    echo "window.location.href = \"/usr/share/bigbashview/bcc/apps/bigdebedit/index.sh.htm\""
+echo '</script>'
+
+###################
+# Close content div
+echo '</div>'
+
+
+
+##############
+# Start footer
+echo '<div id="bcc_footer">'
+  echo '<a class="waves-effect waves-light btn blue-grey lighten-1"><img src=help.png>'$"Ajuda"'</a>'
+      echo '<div id="bcc_footer_right">'
+        echo '<a href="/usr/share/bigbashview/close.sh" class="waves-effect waves-light btn blue-grey lighten-1"><img src=cancel.png>'$"Cancelar"'</a>'
+        echo '<button class="btn waves-effect waves-light blue-grey lighten-1" type="submit" name="action"><img src=ok.png>'$"Próximo"'</button>'
+      echo '</div>'
+echo '</div>'
+echo '</form>'
+
+
+#########
+# The end
+echo '</body>'

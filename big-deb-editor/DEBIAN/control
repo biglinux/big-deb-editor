@@ -1,0 +1,11 @@
+Package: big-deb-editor
+Version: 1.0.2-1big5
+Depends: bigbashview, zenity, fakeroot
+Architecture: all
+Maintainer: Bruno Goncalves <www.biglinux.com.br>
+Section: main
+Priority: optional
+TInstalled-Size:476
+Description: The simplest .deb package generator ever made / O gerador de pacotes .deb mais simples que existe.
+
+

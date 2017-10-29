@@ -1,0 +1,85 @@
+#!/bin/bash
+
+#Translation
+export TEXTDOMAINDIR="/usr/share/locale"
+export TEXTDOMAIN=bigdebedit
+
+# Import BigControlCenter base modules / Importa os módulos básicos do BigControlCenter
+# That's include jquery and materialize / Isso inclui o jquery e o materialize
+# http://materializecss.com/
+. /usr/share/bigbashview/bcc/shell/base.sh
+
+#Title/Description variables
+bcc_title="Criador de pacotes .deb"
+bcc_description=$"A forma mais simples de fazer seus pacotes .deb."
+# To disable logo use: bcc_logo="no"
+bcc_logo="logo.png"
+
+# About variables
+# To disable about use: bcc_about="no"
+bcc_about="yes"
+bcc_about_license=$"GPL v2 or greater"
+bcc_about_by=$"Bruno Gonçalves"
+bcc_about_release_date=$"15/07/2017"
+bcc_about_url_code=$"https://github.com/biglinux/bigdebedit"
+bcc_about_url_project=$"https://www.biglinux.com.br"
+
+mkdir -p "$HOME/.config/bcc/bigdebedit" 2> /dev/null
+
+# Print header in screen
+bcc_header
+
+# Import tweaks for themev
+echo '<link rel="stylesheet" type="text/css" href="theme.css">'
+
+###############
+# Start Content
+
+
+echo '     <div class="row">
+              <div class="input-field col s4">
+                <a class="waves-effect waves-light btn" onclick="javascript:location.href='"'check_folder.sh.htm?change=work'"'">' $"Pasta de trabalho" '</a>
+              </div><div class="input-field col s6">
+                <input id="work" type="text" class="validate" value="'"$(cat "$HOME/.config/bcc/bigdebedit/work")"'" onclick="javascript:location.href='"'check_folder.sh.htm?change=work'"'">
+            <p></div></div>
+
+              <div class="row">
+                <div class="input-field col s4">
+                  <a class="waves-effect waves-light btn" onclick="javascript:location.href='"'check_folder.sh.htm?change=save'"'">' $"Pasta para salvar" '</a>
+                </div><div class="input-field col s6">
+                  <input id="work" type="text" class="validate" value="'"$(cat "$HOME/.config/bcc/bigdebedit/save")"'" onclick="javascript:location.href='"'check_folder.sh.htm?change=save'"'">
+              <p></div></div>'
+
+
+
+
+
+
+
+echo $"* Na pasta de trabalho, suas subpastas representam pacotes .deb, em cada uma adicione os arquivos que deseja incluir em seu pacote, com as subpastas aonde os arquivos devem ficar após instalar o pacote no sistema, por exemplo, crie a pasta para o pacote bigdebedit e dentro crie as subpastas usr e bin, então adicione o arquivo criar-deb, assim ao instalar no sistema terá o arquivo /usr/bin/criar-deb.
+Dentro de todos os pacotes .deb existe a pasta DEBIAN, dentro dela existe o arquivo control, aonde ficam as configurações gerais do pacote." '<p>'
+
+echo $"* Na pasta para salvar ficarão os arquivos .deb gerados com esse programa."
+
+
+###################
+# Close content div
+echo '</div>'
+
+
+
+##############
+# Start footer
+  echo '<div id="bcc_footer">'
+    echo '<a class="waves-effect waves-light btn blue-grey"><img src=help.png>'$"Ajuda"'</a>'
+        echo '<div id="bcc_footer_right">'
+          echo '<a href="/usr/share/bigbashview/close.sh" class="waves-effect waves-light btn blue-grey"><img src=cancel.png>'$"Cancelar"'</a>'
+          echo '<button class="btn waves-effect waves-light blue-grey" onclick="javascript:location.href='"'makedeb.sh.htm'"'" name="action"><img src=ok.png>'$"Próximo"'</button>'
+        echo '</div>'
+  echo '</div>'
+echo '</form>'
+
+
+#########
+# The end
+echo '</body>'

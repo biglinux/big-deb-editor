@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Create .deb packages
+Name[pt]=Criar pacotes .deb
+Name[pt_BR]=Criar pacotes .deb
+Name[es]=Crear paquetes .deb
+Exec=bigbashview /usr/share/bigbashview/bcc/apps/bigdebedit/index.sh.htm -s 1050x600 -i /usr/share/bigbashview/bcc/apps/bigdebedit/logo.png
+Icon=package
+Type=Application
+StartupNotify=true
+Categories=Development;

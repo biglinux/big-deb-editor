@@ -1,0 +1,85 @@
+#!/bin/bash
+
+export TEXTDOMAINDIR="/usr/share/locale"
+export TEXTDOMAIN=bigdebedit
+windowID="$(xprop -root '\t$0' _NET_ACTIVE_WINDOW | cut -f 2)"
+
+if [ "$p_edit" != "" ]; then
+    xdg-open "$(cat "$HOME/.config/bcc/bigdebedit/work")/$p_edit/DEBIAN/control"
+fi
+
+if [ "$p_folder" != "" ]; then
+    xdg-open "$(cat "$HOME/.config/bcc/bigdebedit/work")/$p_folder"
+fi
+
+if [ "$p_folderdeb" != "" ]; then
+    xdg-open "$(cat "$HOME/.config/bcc/bigdebedit/save")"
+fi
+
+if [ "$p_make_translate" != "" ]; then
+    sleep 5
+    bigdebedit --translate "$(cat "$HOME/.config/bcc/bigdebedit/work")/$p_make_translate"
+    zenity --attach="$windowID" --info --text=$"Tradução de arquivos de shell script gerados!"
+fi
+
+if [ "$p_file_translate" != "" ]; then
+
+    xprop -root '\t$0' _NET_ACTIVE_WINDOW | cut -f 2 > /home/bruno/teste
+    zenity --attach="$windowID" --info --text=$"Insira as siglas das línguas que deseja que sejam gerados
+    os arquivos para tradução no arquivo que irei abrir,
+    por exemplo, para português, espanhol e inglês:
+
+
+pt
+es
+en"
+
+    if [ -e "/usr/bin/xed" ]; then
+        bigeditor="xed"
+      elif [ -e "/usr/bin/gedit" ]; then
+        bigeditor="gedit"
+      else
+        bigeditor="kate"
+    fi
+
+    $bigeditor "$(cat "$HOME/.config/bcc/bigdebedit/work")/$p_file_translate/DEBIAN/languages"
+fi
+
+if [ "$p_file_dpkgdivert" != "" ]; then
+
+    zenity --attach="$windowID" --info --text=$"
+    Insira o endereço completo dos arquivos que
+    deseja que sejam substituídos e pertencem
+    também a outros pacotes, por exemplo:
+
+/usr/bin/firefox
+/usr/bin/gedit"
+
+
+    if [ -e "/usr/bin/xed" ]; then
+        bigeditor="xed"
+      elif [ -e "/usr/bin/gedit" ]; then
+        bigeditor="gedit"
+      else
+        bigeditor="kate"
+    fi
+    $bigeditor "$(cat "$HOME/.config/bcc/bigdebedit/work")/$p_file_dpkgdivert/DEBIAN/dpkg-divert"
+fi
+
+
+if [ "$p_make_dpkgdivert" != "" ]; then
+
+    if [ -e "$(cat "$HOME/.config/bcc/bigdebedit/work")/$p_make_dpkgdivert/DEBIAN/preinst" ] || [ -e "$(cat "$HOME/.config/bcc/bigdebedit/work")/$p_make_dpkgdivert/DEBIAN/postrm" ]; then
+      zenity --attach="$windowID" --question --text=$"Já existem os arquivos preinst e postrm para esse pacote, deseja sobrescrever?" --ok-label=$"Sim" --cancel-label=$"Não"
+        if [ $? = 0 ] ; then
+          bigdebedit --dpkg-divert "$(cat "$HOME/.config/bcc/bigdebedit/work")/$p_make_dpkgdivert"
+          zenity --attach="$windowID" --info --text=$"Arquivos gerados!"
+        else
+          exit 0
+        fi
+    else
+      bigdebedit --dpkg-divert "$(cat "$HOME/.config/bcc/bigdebedit/work")/$p_make_dpkgdivert"
+      zenity --attach="$windowID" --info --text=$"Arquivos gerados!"
+    fi
+
+fi

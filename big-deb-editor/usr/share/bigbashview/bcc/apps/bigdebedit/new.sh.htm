@@ -1,0 +1,99 @@
+#!/bin/bash
+
+#Translation
+export TEXTDOMAINDIR="/usr/share/locale"
+export TEXTDOMAIN=bigdebedit
+windowID="$(xprop -root '\t$0' _NET_ACTIVE_WINDOW | cut -f 2)"
+
+# Import BigControlCenter base modules / Importa os módulos básicos do BigControlCenter
+# That's include jquery and materialize / Isso inclui o jquery e o materialize
+# http://materializecss.com/
+. /usr/share/bigbashview/bcc/shell/base.sh
+
+
+#Title/Description variables
+bcc_title="Gerador de ISOs do BigLinux"
+bcc_description=$"Crie seu remaster personalizado de forma bastante simples."
+# To disable logo use: bcc_logo="no"
+bcc_logo="logo.png"
+
+# About variables
+# To disable about use: bcc_about="no"
+bcc_about="yes"
+bcc_about_license=$"GPL v2 or greater"
+bcc_about_by=$"Bruno Gonçalves"
+bcc_about_release_date=$"26/08/2016"
+bcc_about_url_code=$"https://github.com/biglinux/big-remaster"
+bcc_about_url_project=$"https://www.biglinux.com.br"
+
+# Print header in screen
+bcc_header
+
+# Import tweaks for theme
+echo '<link rel="stylesheet" type="text/css" href="theme.css">'
+
+
+id="$p_id"
+name="$p_name"
+option="$p_option"
+
+################
+# End of create new remaster folder
+################
+
+
+
+
+
+###############
+# Start Content
+
+echo '<style>
+tbody {
+    display:block;
+    overflow:auto;
+}
+
+[type="checkbox"]:checked {
+
+display: none;
+}
+</style>'
+
+
+echo '<div class="row"><div class="col s12">'
+
+echo $"Gerando novo pacote..."
+
+
+echo '</div></div>'
+
+
+cd "$(cat "$HOME/.config/bcc/bigdebedit/work")"
+
+
+bigdebedit --new $(zenity --attach="$windowID" --title=$"Insira o nome do pacote" --text "Não insira espaço ou acentos no nome do pacote, preferencialmente escreva tudo em minúsculo.\nExemplo de nome: meu-do-nome-pacote" --entry)
+
+###################
+# Close content div
+echo '</div>'
+
+echo '<script type="text/javascript">'
+    echo "window.location.href = \"/usr/share/bigbashview/bcc/apps/bigdebedit/makedeb.sh.htm\""
+echo '</script>'
+
+##############
+# Start footer
+echo '<div id="bcc_footer">'
+  echo '<a class="waves-effect waves-light btn blue-grey lighten-1"><img src=help.png>'$"Ajuda"'</a>'
+      echo '<div id="bcc_footer_right">'
+        echo '<a href="/usr/share/bigbashview/close.sh" class="waves-effect waves-light btn blue-grey lighten-1"><img src=cancel.png>'$"Cancelar"'</a>'
+
+      echo '</div>'
+echo '</div>'
+echo '</form>'
+
+
+#########
+# The end
+echo '</body>'

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Edit control settings file
+Name[es]=Editar archivo de configuración de control
+Name[pt]=Editar arquivo de configurações control
+Name[pt_BR]=Editar arquivo de configurações control
+Exec=bigdebedit --editcontrol %f
+Icon=applications-other
+Terminal=false
+Type=Application
+NoDisplay=true
+MimeType=application/x-deb;application/x-debian-package;
+InitialPreference=50
