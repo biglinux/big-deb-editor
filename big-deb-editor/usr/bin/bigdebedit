@@ -6,10 +6,18 @@
 
 windowID="$(xprop -root '\t$0' _NET_ACTIVE_WINDOW | cut -f 2)"
 
+
+folder2="$2/$(echo "$2" | sed 's|/$||g;s|.*/||g')"
+folder="$(echo "$folder2" | sed 's|//|/|g')"
+
+if ! [ -d "$folder" ]; then
+    folder="$2"
+fi
+
 case "$1" in
 
   --new)
-    mkdir -p "$2/DEBIAN"
+    mkdir -p "$folder/DEBIAN"
     echo "Package: $2
 Version: 1.0.0-1big1
 Depends:
@@ -18,40 +26,40 @@ Maintainer: Your Name <your@mail>
 Section: admin
 Priority: optional
 Installed-Size:
-Description: Describe your package" > "$2/DEBIAN/control"
+Description: Describe your package" > "$folder/DEBIAN/control"
   ;;
 
 
     --compact)
-      cd "$2/.."
+      cd "$folder/.."
       #Translating shell script
       #Confere se o arquivo, diretório, link, ou arquivo especial existe
-      if [ -e "$2/DEBIAN/languages" ]; then
-        for lang in $(cat "$2/DEBIAN/languages"); do
-          if [ -e "$2/DEBIAN/$lang.po" ]
+      if [ -e "$folder/DEBIAN/languages" ]; then
+        for lang in $(cat "$folder/DEBIAN/languages"); do
+          if [ -e "$folder/DEBIAN/$lang.po" ]
           then
-              mkdir -p "$2/usr/share/locale/$lang/LC_MESSAGES" 2> /dev/null
-              msgfmt -o "$2/usr/share/locale/$lang/LC_MESSAGES/$(echo "$2" | sed 's|.*/||g').mo" "$2/DEBIAN/$lang.po"
+              mkdir -p "$folder/usr/share/locale/$lang/LC_MESSAGES" 2> /dev/null
+              msgfmt -o "$folder/usr/share/locale/$lang/LC_MESSAGES/$(echo "$folder" | sed 's|.*/||g').mo" "$folder/DEBIAN/$lang.po"
           fi
         done
       fi
 
       #Fix permisions for preinst e postrm
-      chmod 755 "$2/DEBIAN/postrm" 2> /dev/null
-      chmod 755 "$2/DEBIAN/preinst" 2> /dev/null
+      chmod 755 "$folder/DEBIAN/postrm" 2> /dev/null
+      chmod 755 "$folder/DEBIAN/preinst" 2> /dev/null
 
       #Packaging
-      find "$2/" ! -type d -print0 | xargs -0 md5sum |sed "s|$2/||g;s|\b  /|  |g" > "$2/DEBIAN/md5sums"
-      size=$(du -s "$2/" | cut -f 1)
+      find "$folder/" ! -type d -print0 | xargs -0 md5sum |sed "s|$folder/||g;s|\b  /|  |g" > "$folder/DEBIAN/md5sums"
+      size=$(du -s "$folder/" | cut -f 1)
 
-sed -i "s|^ *\bInstalled-Size\b *:.*|Installed-Size:$size|" "$2/DEBIAN/control"
+sed -i "s|^ *\bInstalled-Size\b *:.*|Installed-Size:$size|" "$folder/DEBIAN/control"
 
 
       #Confere se a desigualdade é verdadeira
       if [ "$3" = "" ]; then
-        fakeroot dpkg-deb -Z xz -b "$2"  "$(grep -ie "^Package:" -ie "Version:" -ie "Architecture:" $(echo "$2/DEBIAN/control") | sed 's|.*: ||g' | sed ':a;$!N;s/\n/_/;ta;').deb"
+        fakeroot dpkg-deb -Z xz -b "$folder"  "$(grep -ie "^Package:" -ie "Version:" -ie "Architecture:" $(echo "$folder/DEBIAN/control") | sed 's|.*: ||g' | sed ':a;$!N;s/\n/_/;ta;').deb"
       else
-        fakeroot dpkg-deb -Z xz -b "$2"  "$3/$(grep -ie "^Package:" -ie "Version:" -ie "Architecture:" $(echo "$2/DEBIAN/control") | sed 's|.*: ||g' | sed ':a;$!N;s/\n/_/;ta;').deb"
+        fakeroot dpkg-deb -Z xz -b "$folder"  "$3/$(grep -ie "^Package:" -ie "Version:" -ie "Architecture:" $(echo "$folder/DEBIAN/control") | sed 's|.*: ||g' | sed ':a;$!N;s/\n/_/;ta;').deb"
       fi
       exit
     ;;
@@ -61,31 +69,31 @@ sed -i "s|^ *\bInstalled-Size\b *:.*|Installed-Size:$size|" "$2/DEBIAN/control"
     ORI_IFS=$IFS
     IFS=$'\n'
 
-    rm -f "$2/DEBIAN/$(echo "$2" | sed 's|.*/||g').pot"
-    rm -f "$2/DEBIAN/$(echo "$2" | sed 's|.*/||g').pot-corrigido" 2> /dev/null
+    rm -f "$folder/DEBIAN/$(echo "$folder" | sed 's|.*/||g').pot"
+    rm -f "$folder/DEBIAN/$(echo "$folder" | sed 's|.*/||g').pot-corrigido" 2> /dev/null
 
-    mkdir -p "$2/DEBIAN" 2> /dev/null
+    mkdir -p "$folder/DEBIAN" 2> /dev/null
 
-    if [ ! -e "$2/DEBIAN/languages" ]; then
-        > "$2/DEBIAN/languages"
+    if [ ! -e "$folder/DEBIAN/languages" ]; then
+        > "$folder/DEBIAN/languages"
     fi
 
-    for i in $(find "$2" -not \( -path "$2/DEBIAN" -prune \) -type f -exec grep -Iq . {} \; -print); do
-        bash --dump-po-strings $i >> "$2/DEBIAN/$(echo "$2" | sed 's|.*/||g').pot"
-        echo "biglinux - $2"
+    for i in $(find "$folder" -not \( -path "$folder/DEBIAN" -prune \) -type f -exec grep -Iq . {} \; -print); do
+        bash --dump-po-strings $i >> "$folder/DEBIAN/$(echo "$folder" | sed 's|.*/||g').pot"
+        echo "biglinux - $folder"
     done
 
-    xgettext --package-name="$(echo "$2" | sed 's|.*/||g')" --no-location -L PO -o "$2/DEBIAN/$(echo "$2" | sed 's|.*/||g').pot-corrigido" -i "$2/DEBIAN/$(echo "$2" | sed 's|.*/||g').pot"
-    mv "$2/DEBIAN/$(echo "$2" | sed 's|.*/||g').pot-corrigido" "$2/DEBIAN/$(echo "$2" | sed 's|.*/||g').pot" 2> /dev/null
+    xgettext --package-name="$(echo "$folder" | sed 's|.*/||g')" --no-location -L PO -o "$folder/DEBIAN/$(echo "$folder" | sed 's|.*/||g').pot-corrigido" -i "$folder/DEBIAN/$(echo "$folder" | sed 's|.*/||g').pot"
+    mv "$folder/DEBIAN/$(echo "$folder" | sed 's|.*/||g').pot-corrigido" "$folder/DEBIAN/$(echo "$folder" | sed 's|.*/||g').pot" 2> /dev/null
 
 
-    for lang in $(cat "$2/DEBIAN/languages"); do
-      if [ -e "$2/DEBIAN/$lang.po" ]
+    for lang in $(cat "$folder/DEBIAN/languages"); do
+      if [ -e "$folder/DEBIAN/$lang.po" ]
       then
-         msgmerge -o "$2/DEBIAN/$lang.po" "$2/DEBIAN/$lang.po" "$2/DEBIAN/$(echo "$2" | sed 's|.*/||g').pot"
+         msgmerge -o "$folder/DEBIAN/$lang.po" "$folder/DEBIAN/$lang.po" "$folder/DEBIAN/$(echo "$folder" | sed 's|.*/||g').pot"
       else
-         msginit --no-translator -l pt -i "$2/DEBIAN/$(echo "$2" | sed 's|.*/||g').pot" -o "$2/DEBIAN/$lang.po"
-         sed -i 's|Content-Type: text/plain; charset=ASCII|Content-Type: text/plain; charset=utf-8|g' "$2/DEBIAN/$lang.po"
+         msginit --no-translator -l pt -i "$folder/DEBIAN/$(echo "$folder" | sed 's|.*/||g').pot" -o "$folder/DEBIAN/$lang.po"
+         sed -i 's|Content-Type: text/plain; charset=ASCII|Content-Type: text/plain; charset=utf-8|g' "$folder/DEBIAN/$lang.po"
       fi
     done
     IFS=$ORI_IFS
@@ -95,80 +103,80 @@ sed -i "s|^ *\bInstalled-Size\b *:.*|Installed-Size:$size|" "$2/DEBIAN/control"
 
     --dpkg-divert)
     #Verify if dpkg-divert file exist
-    if [ ! -e "$2/DEBIAN/dpkg-divert" ]; then
-        echo "File not found: $2/DEBIAN/dpkg-divert"
+    if [ ! -e "$folder/DEBIAN/dpkg-divert" ]; then
+        echo "File not found: $folder/DEBIAN/dpkg-divert"
         exit
     fi
 
     ORI_IFS=$IFS
     IFS=$'\n'
-      cd "$2/.."
+      cd "$folder/.."
 
 #Generate preinst
-cat << EOF > "$2/DEBIAN/preinst"
+cat << EOF > "$folder/DEBIAN/preinst"
 #!/bin/sh
 set -e
-package_name=$(echo "$2" | sed 's|.*/||g')
-mkdir -p "/usr/share/dpkgdivert/$(echo "$2" | sed 's|.*/||g')"
+package_name=$(echo "$folder" | sed 's|.*/||g')
+mkdir -p "/usr/share/dpkgdivert/$(echo "$folder" | sed 's|.*/||g')"
 case "\$1" in
   install)
 EOF
-for divert  in  $(cat "$2/DEBIAN/dpkg-divert"); do
-    echo "    dpkg-divert --package \"\$package_name\" --divert \"/usr/share/dpkgdivert/$(echo "$2" | sed 's|.*/||g')/$(echo "$divert" | sed 's|/||g')\" --rename \"$divert\"" >> "$2/DEBIAN/preinst"
+for divert  in  $(cat "$folder/DEBIAN/dpkg-divert"); do
+    echo "    dpkg-divert --package \"\$package_name\" --divert \"/usr/share/dpkgdivert/$(echo "$folder" | sed 's|.*/||g')/$(echo "$divert" | sed 's|/||g')\" --rename \"$divert\"" >> "$folder/DEBIAN/preinst"
 done
 
 echo '    ;;
-  upgrade)' >> "$2/DEBIAN/preinst"
+  upgrade)' >> "$folder/DEBIAN/preinst"
 
-  for divert  in  $(cat "$2/DEBIAN/dpkg-divert"); do
-        echo "if [ \"\$(dpkg-divert --list \"$divert\")\" = \"\" ]" >> "$2/DEBIAN/preinst"
-        echo "then" >> "$2/DEBIAN/preinst"
-        echo "    dpkg-divert --package \"\$package_name\" --divert \"/usr/share/dpkgdivert/$(echo "$2" | sed 's|.*/||g')/$(echo "$divert" | sed 's|/||g')\" --rename \"$divert\"" >> "$2/DEBIAN/preinst"
-        echo "fi" >> "$2/DEBIAN/preinst"
+  for divert  in  $(cat "$folder/DEBIAN/dpkg-divert"); do
+        echo "if [ \"\$(dpkg-divert --list \"$divert\")\" = \"\" ]" >> "$folder/DEBIAN/preinst"
+        echo "then" >> "$folder/DEBIAN/preinst"
+        echo "    dpkg-divert --package \"\$package_name\" --divert \"/usr/share/dpkgdivert/$(echo "$folder" | sed 's|.*/||g')/$(echo "$divert" | sed 's|/||g')\" --rename \"$divert\"" >> "$folder/DEBIAN/preinst"
+        echo "fi" >> "$folder/DEBIAN/preinst"
   done
 
   echo ';;
 esac
-exit 0' >> "$2/DEBIAN/preinst"
+exit 0' >> "$folder/DEBIAN/preinst"
 #Close preinst
 
 
 #Generate postrm
-cat << EOF > "$2/DEBIAN/postrm"
+cat << EOF > "$folder/DEBIAN/postrm"
 #!/bin/sh
 set -e
-package_name=$(echo "$2" | sed 's|.*/||g')
+package_name=$(echo "$folder" | sed 's|.*/||g')
 case "\$1" in
   remove)
 EOF
 
-for divert  in  $(cat "$2/DEBIAN/dpkg-divert"); do
-    echo "    dpkg-divert --package \"\$package_name\" --rename --remove \"$divert\"" >> "$2/DEBIAN/postrm"
+for divert  in  $(cat "$folder/DEBIAN/dpkg-divert"); do
+    echo "    dpkg-divert --package \"\$package_name\" --rename --remove \"$divert\"" >> "$folder/DEBIAN/postrm"
 done
 
 echo '    ;;
-  purge)' >> "$2/DEBIAN/postrm"
+  purge)' >> "$folder/DEBIAN/postrm"
 
-  for divert  in  $(cat "$2/DEBIAN/dpkg-divert"); do
-      echo "    dpkg-divert --package \"\$package_name\" --rename --remove \"$divert\"" >> "$2/DEBIAN/postrm"
+  for divert  in  $(cat "$folder/DEBIAN/dpkg-divert"); do
+      echo "    dpkg-divert --package \"\$package_name\" --rename --remove \"$divert\"" >> "$folder/DEBIAN/postrm"
   done
 
   echo ';;
 esac
-exit 0' >> "$2/DEBIAN/postrm"
+exit 0' >> "$folder/DEBIAN/postrm"
 
       IFS=$ORI_IFS
-      chmod 755 "$2/DEBIAN/postrm"
-      chmod 755 "$2/DEBIAN/preinst"
+      chmod 755 "$folder/DEBIAN/postrm"
+      chmod 755 "$folder/DEBIAN/preinst"
       exit
     ;;
 
 
     --extract)
       if [ "$3" != "" ]; then
-        dpkg-deb -R "$2" "$3/$(dpkg-deb -W "$2" | sed 's|\t|-|g;s| ||g')"
+        dpkg-deb -R "$folder" "$3/$(dpkg-deb -W "$folder" | sed 's|\t|-|g;s| ||g')"
       else
-        dpkg-deb -R "$2" "$(dpkg-deb -W "$2" | sed 's|\t|-|g;s| ||g')"
+        dpkg-deb -R "$folder" "$(dpkg-deb -W "$folder" | sed 's|\t|-|g;s| ||g')"
       fi
     ;;
 
@@ -180,7 +188,7 @@ edite o que achar necessário e feche o editor de textos.
 Automaticamente será gerado o pacote e um alerta irá avisar
 o endereço do novo arquivo .deb."
     #Fix to open in nemo file manager
-    filtered=$(echo "$2" | sed "s|'||g")
+    filtered=$(echo "$folder" | sed "s|'||g")
 
     dpkg-deb -R "$filtered" "/tmp/$(dpkg-deb -W "$filtered" | sed 's|\t|-|g;s| ||g')"
     if [ -e "/usr/bin/xed" ]; then

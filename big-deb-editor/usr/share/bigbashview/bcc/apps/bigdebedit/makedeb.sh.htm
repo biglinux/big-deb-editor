@@ -89,6 +89,13 @@ for i  in  $(ls -d */ | sed 's|/$||g'); do
   <tr>
     <td style="padding-top:0px; padding-bottom:10px;"><input type="checkbox" name="package" value="$i" id="$i" class="filled-in" id="filled-in-box">
       <label for="$i" class="blue-text text-darken-2">$i</label>
+EOF
+
+	if [ -d "$(cat "$HOME/.config/bcc/bigdebedit/work")/$i/$i" ]; then
+    	i="$i/$i"
+	fi
+
+  cat << EOF
       <a href="run.run?edit=$i" class="black-text tooltipped" data-position="top" data-delay="50" data-tooltip="$tooltip_edit"> <img src=edit.png></a>
       <a href="run.run?folder=$i" class="black-text tooltipped" data-position="top" data-delay="50" data-tooltip="$tooltip_folder"> <img src=folder.png></a>
       <a href="run.run?file_translate=$i" class="black-text tooltipped" data-position="top" data-delay="50" data-tooltip="$tooltip_translate"> <img src=file_translate.png></a>
