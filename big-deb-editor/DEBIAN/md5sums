@@ -6,7 +6,7 @@ d41d8cd98f00b204e9800998ecf8427e  DEBIAN/md5sums
 e6caf0b43b03b6c04a966a7dfebf57d6  DEBIAN/pt.po
 6fe158be750fd6a649fec5e5d821bd78  DEBIAN/control
 2fdb9d8f32ce07f07058e4f976fcc068  usr/bin/bigdebedit
-8039cc0e176c9cc0a32ce7e9f4c3872c  usr/bin/bigdebedit-gui
+01fbd97c84981ebf99d6300f8c92a6e6  usr/bin/bigdebedit-gui
 b5f852171a626fbcf07cb8e83c7307f5  usr/share/applications/BigDebEdit.desktop
 47c508f8735526f32cec3f6a8c3f08d6  usr/share/applications/bigdebedit.desktop
 a0ec3b52c75722dfd3ddd2c0fcdd184a  usr/share/bigbashview/bcc/apps/bigdebedit/bg.jpg
