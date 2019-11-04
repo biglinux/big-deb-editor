@@ -96,12 +96,13 @@ EOF
 	fi
 
   cat << EOF
-      <a href="run.run?edit=$i" class="black-text tooltipped" data-position="top" data-delay="50" data-tooltip="$tooltip_edit"> <img src=edit.png></a>
-      <a href="run.run?folder=$i" class="black-text tooltipped" data-position="top" data-delay="50" data-tooltip="$tooltip_folder"> <img src=folder.png></a>
-      <a href="run.run?file_translate=$i" class="black-text tooltipped" data-position="top" data-delay="50" data-tooltip="$tooltip_translate"> <img src=file_translate.png></a>
-      <a href="run.run?make_translate=$i" class="black-text tooltipped" data-position="top" data-delay="50" data-tooltip="$tooltip_make_translate"> <img src=translate.png></a>
-      <a href="run.run?file_dpkgdivert=$i" class="black-text tooltipped" data-position="top" data-delay="50" data-tooltip="$tooltip_dpkgdivert"> <img src=file_dpkgdivert.png></a>
-      <a href="run.run?make_dpkgdivert=$i" class="black-text tooltipped" data-position="top" data-delay="50" data-tooltip="$tooltip_make_dpkgdivert"> <img src=dpkgdivert.png></a>
+  
+      <a onclick="_run('./run.run?edit=$i')" class="black-text tooltipped" data-position="top" data-delay="50" data-tooltip="$tooltip_edit"> <img src=edit.png></a>
+      <a onclick="_run('./run.run?folder=$i')" class="black-text tooltipped" data-position="top" data-delay="50" data-tooltip="$tooltip_folder"> <img src=folder.png></a>
+      <a onclick="_run('./run.run?file_translate=$i')" class="black-text tooltipped" data-position="top" data-delay="50" data-tooltip="$tooltip_translate"> <img src=file_translate.png></a>
+      <a onclick="_run('./run.run?make_translate=$i')" class="black-text tooltipped" data-position="top" data-delay="50" data-tooltip="$tooltip_make_translate"> <img src=translate.png></a>
+      <a onclick="_run('./run.run?file_dpkgdivert=$i')" class="black-text tooltipped" data-position="top" data-delay="50" data-tooltip="$tooltip_dpkgdivert"> <img src=file_dpkgdivert.png></a>
+      <a onclick="_run('./run.run?make_dpkgdivert=$i')" class="black-text tooltipped" data-position="top" data-delay="50" data-tooltip="$tooltip_make_dpkgdivert"> <img src=dpkgdivert.png></a>
       </td>
   </tr>
 EOF
