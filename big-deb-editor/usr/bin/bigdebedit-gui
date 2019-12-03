@@ -1,3 +1,5 @@
 #!/bin/bash
 
-bigbashview /usr/share/bigbashview/bcc/apps/bigdebedit/index.sh.htm -s 1050x600 -i /usr/share/bigbashview/bcc/apps/bigdebedit/logo.png
+cd /usr/share/bigbashview/bcc/apps/bigdebedit/
+
+bigbashview index.sh.htm -s 1050x600 -i logo.png
