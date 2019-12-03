@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: big-deb-editor\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-10 19:33-0300\n"
+"POT-Creation-Date: 2019-12-03 13:11-0300\n"
 "PO-Revision-Date: 2017-10-10 19:33-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -53,27 +53,6 @@ msgstr ""
 msgid "https://www.biglinux.com.br"
 msgstr ""
 
-msgid "Pasta de trabalho"
-msgstr ""
-
-msgid "Pasta para salvar"
-msgstr ""
-
-msgid ""
-"* Na pasta de trabalho, suas subpastas representam pacotes .deb, em cada uma "
-"adicione os arquivos que deseja incluir em seu pacote, com as subpastas "
-"aonde os arquivos devem ficar após instalar o pacote no sistema, por "
-"exemplo, crie a pasta para o pacote bigdebedit e dentro crie as subpastas "
-"usr e bin, então adicione o arquivo criar-deb, assim ao instalar no sistema "
-"terá o arquivo /usr/bin/criar-deb.\n"
-"Dentro de todos os pacotes .deb existe a pasta DEBIAN, dentro dela existe o "
-"arquivo control, aonde ficam as configurações gerais do pacote."
-msgstr ""
-
-msgid ""
-"* Na pasta para salvar ficarão os arquivos .deb gerados com esse programa."
-msgstr ""
-
 msgid "Ajuda"
 msgstr ""
 
@@ -93,6 +72,27 @@ msgid "Ver pasta"
 msgstr ""
 
 msgid "Fechar"
+msgstr ""
+
+msgid "Pasta de trabalho"
+msgstr ""
+
+msgid "Pasta para salvar"
+msgstr ""
+
+msgid ""
+"* Na pasta de trabalho, suas subpastas representam pacotes .deb, em cada uma "
+"adicione os arquivos que deseja incluir em seu pacote, com as subpastas "
+"aonde os arquivos devem ficar após instalar o pacote no sistema, por "
+"exemplo, crie a pasta para o pacote bigdebedit e dentro crie as subpastas "
+"usr e bin, então adicione o arquivo criar-deb, assim ao instalar no sistema "
+"terá o arquivo /usr/bin/criar-deb.\n"
+"Dentro de todos os pacotes .deb existe a pasta DEBIAN, dentro dela existe o "
+"arquivo control, aonde ficam as configurações gerais do pacote."
+msgstr ""
+
+msgid ""
+"* Na pasta para salvar ficarão os arquivos .deb gerados com esse programa."
 msgstr ""
 
 msgid "Pasta de trabalho:"
@@ -158,9 +158,6 @@ msgstr ""
 msgid "Insira o nome do pacote"
 msgstr ""
 
-msgid "Gerando pacotes..."
-msgstr ""
-
 msgid "Tradução de arquivos de shell script gerados!"
 msgstr ""
 
@@ -197,4 +194,7 @@ msgid "Não"
 msgstr ""
 
 msgid "Arquivos gerados!"
+msgstr ""
+
+msgid "Gerando pacotes..."
 msgstr ""

@@ -1,14 +1,14 @@
 # Portuguese translations for big-deb-editor package.
-# Copyright (C) 2017 THE big-deb-editor'S COPYRIGHT HOLDER
+# Copyright (C) 2019 THE big-deb-editor'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the big-deb-editor package.
-# Automatically generated, 2017.
+# Automatically generated, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: big-deb-editor\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-03 13:11-0300\n"
-"PO-Revision-Date: 2017-10-10 19:33-0300\n"
+"PO-Revision-Date: 2019-12-03 13:10-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: pt\n"
