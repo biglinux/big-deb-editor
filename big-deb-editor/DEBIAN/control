@@ -1,5 +1,5 @@
 Package: big-deb-editor
-Version: 1.0.3-1big5
+Version: 1.0.3-1big6
 Depends: bigbashview, zenity, fakeroot, gettext
 Architecture: all
 Maintainer: Bruno Goncalves <www.biglinux.com.br>

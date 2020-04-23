@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: big-deb-editor\n"
         "Report-Msgid-Bugs-To: \n"
-        "POT-Creation-Date: 2019-12-03 13:11-0300\n"
+        "POT-Creation-Date: 2020-04-23 05:38-0300\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,9 +49,6 @@ msgstr  ""
 msgid   "https://www.biglinux.com.br"
 msgstr  ""
 
-msgid   "Ajuda"
-msgstr  ""
-
 msgid   "Cancelar"
 msgstr  ""
 
@@ -62,9 +59,6 @@ msgid   "Pacotes gerados, confira o log para verificar se ocorreram erros:"
 msgstr  ""
 
 msgid   "Gerar outro pacote"
-msgstr  ""
-
-msgid   "Ver pasta"
 msgstr  ""
 
 msgid   "Fechar"
@@ -131,6 +125,9 @@ msgid   "Abrir a pasta com os arquivos .deb"
 msgstr  ""
 
 msgid   "Criar novo pacote"
+msgstr  ""
+
+msgid   "Ver pasta"
 msgstr  ""
 
 msgid   "Gerar .deb"
