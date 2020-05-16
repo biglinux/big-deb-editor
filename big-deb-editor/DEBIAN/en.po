@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: big-deb-editor\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-23 05:38-0300\n"
+"POT-Creation-Date: 2020-05-16 13:27-0300\n"
 "PO-Revision-Date: 2020-04-24 19:04-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -31,15 +31,17 @@ msgstr ""
 "Automatically the package will be generated and an alert will warn you\n"
 "about the new .deb package address."
 
+#, fuzzy
 msgid ""
-"Arquivos modificados salvos em: $(echo \"$filtered\" | sed 's|.deb$|-BIG-"
+"Arquivos modificado salvo em: $(echo \"$filtered\" | sed 's|.deb$|-BIG-"
 "modified.deb|g')"
 msgstr ""
 "Modified files saved in: $(echo \"$filtered\" | sed 's|.deb$|-BIG-modified."
 "deb|g')"
 
+#, fuzzy
 msgid ""
-"Arquivos modificados salvos em: $(echo \"$filtered\" | sed 's|.deb$|-BIG-"
+"Arquivos modificado salvo em: $(echo \"$filtered\" | sed 's|.deb$|-BIG-"
 "modified.deb|g' | sed \"s|.*/|$HOME/|\"g)"
 msgstr ""
 "Modified files saved in: $(echo \"$filtered\" | sed 's|.deb$|-BIG-modified."
@@ -48,7 +50,8 @@ msgstr ""
 msgid "A forma mais simples de fazer seus pacotes .deb."
 msgstr "The most simple way to make your .deb packages."
 
-msgid "GPL v2 ou mais recente."
+#, fuzzy
+msgid "GPL v2 or greater"
 msgstr "GPL v2 or greater"
 
 msgid "Bruno Gonçalves"

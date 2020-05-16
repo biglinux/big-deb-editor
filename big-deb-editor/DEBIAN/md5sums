@@ -1,11 +1,11 @@
 e6caf0b43b03b6c04a966a7dfebf57d6  DEBIAN/big-deb-editor-en.po
-cae52d74c3395f1e08d8e61a0f387c8e  DEBIAN/es.po
+5c20d4c7d3c7ca46f5659d31979c2b4c  DEBIAN/en.po
+d1be2cf9836643c4cd2d97472d781947  DEBIAN/es.po
 93a4abecc8dd18e61d7759f5042fa4de  DEBIAN/languages
 d41d8cd98f00b204e9800998ecf8427e  DEBIAN/md5sums
-cae52d74c3395f1e08d8e61a0f387c8e  DEBIAN/pt.po
-fa1eec3a65c146481a9c5a52507aa814  DEBIAN/en.po
-3235e2dcb42ddd5bc0f84a7374ee889b  DEBIAN/big-deb-editor.pot
-51f22eabb3b1d2eb7efaa62a722dbefb  DEBIAN/control
+f32929f39f64d76a7c7dc6a1e395baef  DEBIAN/pt.po
+d581ee6c9a4119e20d63ab11bd1a8a1b  DEBIAN/big-deb-editor.pot
+88f84d0119ed58c9d4032d7a278fd35c  DEBIAN/control
 2fdb9d8f32ce07f07058e4f976fcc068  usr/bin/bigdebedit
 649bfe8047a7c021811003c27ad84865  usr/bin/bigdebedit-gui
 b5f852171a626fbcf07cb8e83c7307f5  usr/share/applications/BigDebEdit.desktop
@@ -33,6 +33,6 @@ e3e712327b12414b2e9bf542a6a7ca83  usr/share/bigbashview/bcc/apps/bigdebedit/run.
 022dc123ce3f45afca12bc526c9d0398  usr/share/locale-langpack/en/LC_MESSAGES/big-deb-editor.mo
 9ebff19aad0222254e51bfbdedc2c82b  usr/share/locale-langpack/es/LC_MESSAGES/big-deb-editor.mo
 9ebff19aad0222254e51bfbdedc2c82b  usr/share/locale-langpack/pt/LC_MESSAGES/big-deb-editor.mo
-d6ef51e9033800b51271dfe9dc878604  usr/share/locale/es/LC_MESSAGES/big-deb-editor.mo
+7a011eef786e4309579107b3f114a98b  usr/share/locale/es/LC_MESSAGES/big-deb-editor.mo
 d6ef51e9033800b51271dfe9dc878604  usr/share/locale/pt/LC_MESSAGES/big-deb-editor.mo
-d55e5d00165308af5cec7e3780182c1e  usr/share/locale/en/LC_MESSAGES/big-deb-editor.mo
+977cba2020af955286c58433adeff74a  usr/share/locale/en/LC_MESSAGES/big-deb-editor.mo
