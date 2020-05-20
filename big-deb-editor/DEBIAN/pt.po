@@ -26,12 +26,12 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Arquivos modificado salvo em: $(echo \"$filtered\" | sed 's|.deb$|-BIG-"
+"Arquivos modificados salvos em: $(echo \"$filtered\" | sed 's|.deb$|-BIG-"
 "modified.deb|g')"
 msgstr ""
 
 msgid ""
-"Arquivos modificado salvo em: $(echo \"$filtered\" | sed 's|.deb$|-BIG-"
+"Arquivos modificados salvos em: $(echo \"$filtered\" | sed 's|.deb$|-BIG-"
 "modified.deb|g' | sed \"s|.*/|$HOME/|\"g)"
 msgstr ""
 
