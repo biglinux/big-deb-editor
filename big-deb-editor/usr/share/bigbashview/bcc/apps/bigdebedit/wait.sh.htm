@@ -32,9 +32,9 @@ bcc_header
 echo '<link rel="stylesheet" type="text/css" href="theme.css">'
 
 
-id="$p_id"
-name="$p_name"
-option="$p_option"
+id="$id"
+name="$name"
+option="$option"
 
 ################
 # End of create new remaster folder
@@ -73,7 +73,7 @@ echo '<table>
 
 OLDIFS=$IFS
 IFS=$'\n'
-for i  in  $(echo "$p_package" | sed 's|;|\n|g'); do
+for i  in  $(echo "$package" | sed 's|;|\n|g'); do
   echo '<tr><td style="padding-top:0px; padding-bottom:10px;">'
   echo "$(cat "$HOME/.config/bcc/bigdebedit/work")/$i<br>"
   echo '</td></tr>'
@@ -83,7 +83,7 @@ IFS=$OLDIFS
 echo '</tbody></table>'
 
 echo '<script type="text/javascript">'
-    echo "window.location.href = \"/usr/share/bigbashview/bcc/apps/bigdebedit/finish.sh.htm?package=$(echo "$p_package" | sed 's|;|,|g')\""
+    echo "window.location.href = \"/usr/share/bigbashview/bcc/apps/bigdebedit/finish.sh.htm?package=$(echo "$package" | sed 's|;|,|g')\""
 echo '</script>'
 
 

@@ -73,15 +73,15 @@ echo '<table>
 # Go to work folder
 cd "$(cat "$HOME/.config/bcc/bigdebedit/work")"
 
-tooltip_edit=$"Editar o arquivo control"
-tooltip_folder=$"Abrir a pasta"
-tooltip_translate=$"Definir para quais línguas devem ser gerados arquivos de tradução, exclusivo para os arquivos em shellscript"
-tooltip_make_translate=$"Gerar arquivos para tradução, exclusivo para arquivos em shellscript"
-tooltip_dpkgdivert=$"Especificar arquivos que devem sobrescrever os de outros pacotes, processo feito com dpkg-divert"
-tooltip_make_dpkgdivert=$"Gerar arquivos preinst e postrm baseado no arquivo dpkg-divert"
-tooltip_make_deb=$"Selecione na lista os pacotes que deseja gerar os arquivos .deb"
-tooltip_new_pacakge=$"Antes de gerar um .deb é preciso ter uma pasta com os arquivos, para iniciar um pacote do zero clique aqui"
-tooltip_view_folder=$"Abrir a pasta com os arquivos .deb"
+tooltiedit=$"Editar o arquivo control"
+tooltifolder=$"Abrir a pasta"
+tooltitranslate=$"Definir para quais línguas devem ser gerados arquivos de tradução, exclusivo para os arquivos em shellscript"
+tooltimake_translate=$"Gerar arquivos para tradução, exclusivo para arquivos em shellscript"
+tooltidpkgdivert=$"Especificar arquivos que devem sobrescrever os de outros pacotes, processo feito com dpkg-divert"
+tooltimake_dpkgdivert=$"Gerar arquivos preinst e postrm baseado no arquivo dpkg-divert"
+tooltimake_deb=$"Selecione na lista os pacotes que deseja gerar os arquivos .deb"
+tooltinew_pacakge=$"Antes de gerar um .deb é preciso ter uma pasta com os arquivos, para iniciar um pacote do zero clique aqui"
+tooltiview_folder=$"Abrir a pasta com os arquivos .deb"
 
 # Loop to show all folders in table
 for i  in  $(ls -d */ | sed 's|/$||g'); do
@@ -97,12 +97,12 @@ EOF
 
   cat << EOF
   
-      <a onclick="_run('./run.run?edit=$i')" class="black-text tooltipped" data-position="top" data-delay="50" data-tooltip="$tooltip_edit"> <img src=edit.png></a>
-      <a onclick="_run('./run.run?folder=$i')" class="black-text tooltipped" data-position="top" data-delay="50" data-tooltip="$tooltip_folder"> <img src=folder.png></a>
-      <a onclick="_run('./run.run?file_translate=$i')" class="black-text tooltipped" data-position="top" data-delay="50" data-tooltip="$tooltip_translate"> <img src=file_translate.png></a>
-      <a onclick="_run('./run.run?make_translate=$i')" class="black-text tooltipped" data-position="top" data-delay="50" data-tooltip="$tooltip_make_translate"> <img src=translate.png></a>
-      <a onclick="_run('./run.run?file_dpkgdivert=$i')" class="black-text tooltipped" data-position="top" data-delay="50" data-tooltip="$tooltip_dpkgdivert"> <img src=file_dpkgdivert.png></a>
-      <a onclick="_run('./run.run?make_dpkgdivert=$i')" class="black-text tooltipped" data-position="top" data-delay="50" data-tooltip="$tooltip_make_dpkgdivert"> <img src=dpkgdivert.png></a>
+      <a onclick="_run('./run.run?edit=$i')" class="black-text tooltipped" data-position="top" data-delay="50" data-tooltip="$tooltiedit"> <img src=edit.png></a>
+      <a onclick="_run('./run.run?folder=$i')" class="black-text tooltipped" data-position="top" data-delay="50" data-tooltip="$tooltifolder"> <img src=folder.png></a>
+      <a onclick="_run('./run.run?file_translate=$i')" class="black-text tooltipped" data-position="top" data-delay="50" data-tooltip="$tooltitranslate"> <img src=file_translate.png></a>
+      <a onclick="_run('./run.run?make_translate=$i')" class="black-text tooltipped" data-position="top" data-delay="50" data-tooltip="$tooltimake_translate"> <img src=translate.png></a>
+      <a onclick="_run('./run.run?file_dpkgdivert=$i')" class="black-text tooltipped" data-position="top" data-delay="50" data-tooltip="$tooltidpkgdivert"> <img src=file_dpkgdivert.png></a>
+      <a onclick="_run('./run.run?make_dpkgdivert=$i')" class="black-text tooltipped" data-position="top" data-delay="50" data-tooltip="$tooltimake_dpkgdivert"> <img src=dpkgdivert.png></a>
       </td>
   </tr>
 EOF
@@ -123,12 +123,12 @@ echo '</div>'
 # Start footer
 echo '<div id="bcc_footer">'
       echo '<div id="bcc_footer_right">'
-        echo '<a href="new.sh.htm" class="waves-effect waves-light btn blue-grey lighten-1 tooltipped" data-position="top" data-delay="50" data-tooltip="'"$tooltip_new_pacakge"'"><img src=ok.png>'$"Criar novo pacote"'</a>'
+        echo '<a href="new.sh.htm" class="waves-effect waves-light btn blue-grey lighten-1 tooltipped" data-position="top" data-delay="50" data-tooltip="'"$tooltinew_pacakge"'"><img src=ok.png>'$"Criar novo pacote"'</a>'
         
         
         
-        echo "<a onclick=\"_run('./run.run?folderdeb=open')\" "' class="waves-effect waves-light btn blue-grey tooltipped" data-position="top" data-delay="50" data-tooltip="'"$tooltip_view_folder"'"><img src=ok.png>'$"Ver pasta"'</a>'
-        echo '<button class="btn waves-effect waves-light blue-grey lighten-1 tooltipped" data-position="top" data-delay="50" data-tooltip="'"$tooltip_make_deb"'" type="submit" name="action"><img src=ok.png>'$"Gerar .deb"'</button>'
+        echo "<a onclick=\"_run('./run.run?folderdeb=open')\" "' class="waves-effect waves-light btn blue-grey tooltipped" data-position="top" data-delay="50" data-tooltip="'"$tooltiview_folder"'"><img src=ok.png>'$"Ver pasta"'</a>'
+        echo '<button class="btn waves-effect waves-light blue-grey lighten-1 tooltipped" data-position="top" data-delay="50" data-tooltip="'"$tooltimake_deb"'" type="submit" name="action"><img src=ok.png>'$"Gerar .deb"'</button>'
       echo '</div>'
 echo '</div>'
 echo '</form>'

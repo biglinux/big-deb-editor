@@ -33,7 +33,7 @@ cd ~
 # Select new folder
 #############
 
-if [ "$p_change" = "work" ]; then
+if [ "$change" = "work" ]; then
     zenity --attach="$windowID" --file-selection --directory --filename=~ > "$HOME/.config/bcc/bigdebedit/work-tmp"
     #Confere se o diretório existe
     if [ -d "$(cat "$HOME/.config/bcc/bigdebedit/work-tmp")" ]
@@ -45,7 +45,7 @@ fi
 
 
 
-if [ "$p_change" = "save" ]; then
+if [ "$change" = "save" ]; then
     zenity --attach="$windowID" --file-selection --directory --filename=~ > "$HOME/.config/bcc/bigdebedit/save-tmp"
         #Confere se o diretório existe
         if [ -d "$(cat "$HOME/.config/bcc/bigdebedit/save-tmp")" ]
